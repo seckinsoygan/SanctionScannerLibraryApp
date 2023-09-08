@@ -1,0 +1,28 @@
+﻿@model Book
+@{
+    ViewData["Title"] = "LendBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+    <div class="image">
+        <img src="@Model.BookImage" style="height:700px" />
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form">
+        <form method="post">
+            <input type="hidden" asp-for="BookId" />
+            <label>Personal Name</label>
+            <input type="text" asp-for="BookOwner" class="form-control" placeholder="" />
+            <br />
+            <label>Return Date</label>
+            <input type="date" asp-for="ReturnDate" class="form-control" placeholder=@DateTime.Now />
+            <br />
+            <button class="btn btn-warning">Lend the Book</button>
+        </form>
+    </div>
+    </div>
+</div>
+

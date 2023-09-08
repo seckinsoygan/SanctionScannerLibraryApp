@@ -1,0 +1,19 @@
+﻿@model Book
+@{
+    ViewData["Title"] = "AddBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <label>Name</label>
+    <input type="text" asp-for="BookName" class="form-control" />
+    <br />
+    <label>Author</label>
+    <input type="text" asp-for="BookAuthor" class="form-control" />
+    <br />
+    <label>Image</label>
+    <input type="text" asp-for="BookImage" class="form-control" />
+    <br />
+    <button class="btn btn-primary">Add</button>
+</form>
+

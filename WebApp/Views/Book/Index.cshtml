@@ -1,0 +1,29 @@
+﻿@model List<Book>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a href="/Book/AddBook" class="btn btn-success">Add New Book</a>
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 18rem">
+            <img class="card-img-top" src="@item.BookImage" alt="Card image cap" style="height:400px">
+            <div class="card-body">
+                <h5 class="card-title">@item.BookName</h5>
+                <p class="card-text">@item.BookAuthor</p>
+                @if(item.BookStatus == false)
+                {
+                    <p><i>Kütüphanede Bulunuyor.</i></p> 
+                }
+                else
+                {
+                    <p></p>
+                }
+                <a href="/Book/LendBook/@item.BookId" class="btn btn-info">Lend</a>
+            </div>
+        </div>
+    }
+</div>
+
