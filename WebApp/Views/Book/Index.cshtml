@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<a href="/Book/AddBook" class="btn btn-success">Add New Book</a>
+<a href="/Book/AddBook" class="btn btn-success">Yeni Kitap Ekle</a>
 <hr />
 <div class="row">
     @foreach (var item in Model)
@@ -19,9 +19,9 @@
                 }
                 else
                 {
-                    <p></p>
+                    <p><i><b>@item.BookOwner</b> isimli kişide , <b>@item.ReturnDate.ToShortDateString()</b> tarihinde geri gelecek.</i></p>
                 }
-                <a href="/Book/LendBook/@item.BookId" class="btn btn-info">Lend</a>
+                <a href="/Book/LendBook/@item.BookId" class="btn btn-info">Ödünç Ver</a>
             </div>
         </div>
     }

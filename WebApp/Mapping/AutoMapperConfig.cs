@@ -8,7 +8,10 @@ namespace WebApp.Mapping
     {
         public AutoMapperConfig()
         {
-            CreateMap<LendBookViewModel, Book>().ReverseMap();
+            CreateMap<LendBookViewModel, Book>().ReverseMap()
+                .ForMember(dest => dest.BookOwner, opt => opt.MapFrom(src => src.BookOwner))
+                .ForMember(dest => dest.BookId, opt => opt.MapFrom(src => src.BookId))
+                .ForMember(dest => dest.ReturnDate, opt => opt.MapFrom(src => src.ReturnDate));
         }
     }
 }

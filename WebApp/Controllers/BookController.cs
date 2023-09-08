@@ -10,11 +10,13 @@ namespace WebApp.Controllers
     {
         private readonly IBookService bookService;
         private readonly IMapper mapper;
+        private readonly IBookActionService bookActionService;
 
-        public BookController(IBookService bookService, IMapper mapper)
+        public BookController(IBookService bookService, IMapper mapper, IBookActionService bookActionService)
         {
             this.bookService = bookService;
             this.mapper = mapper;
+            this.bookActionService = bookActionService;
         }
 
         public IActionResult Index()
@@ -39,7 +41,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult LendBook(int id)
         {
-            var value = bookService.GetById(id);
+            var value = mapper.Map<LendBookViewModel>(bookService.GetById(id));
             return View(value);
         }
         [HttpPost]

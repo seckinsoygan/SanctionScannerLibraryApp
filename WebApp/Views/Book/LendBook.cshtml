@@ -1,4 +1,4 @@
-﻿@model Book
+﻿@model LendBookViewModel
 @{
     ViewData["Title"] = "LendBook";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,20 +7,23 @@
 <div class="row">
     <div class="col-md-6">
     <div class="image">
-        <img src="@Model.BookImage" style="height:700px" />
+            <img src="@Model.BookImage" style="height:700px" />
     </div>
     </div>
     <div class="col-md-6">
     <div class="form">
         <form method="post">
             <input type="hidden" asp-for="BookId" />
+            <input type="hidden" asp-for="BookImage" />
+            <input type="hidden" asp-for="BookAuthor" />
+            <input type="hidden" asp-for="BookName" />
             <label>Personal Name</label>
-            <input type="text" asp-for="BookOwner" class="form-control" placeholder="" />
+            <input type="text" asp-for="BookOwner" class="form-control" value=" " />
             <br />
             <label>Return Date</label>
-            <input type="date" asp-for="ReturnDate" class="form-control" placeholder=@DateTime.Now />
+            <input type="date" asp-for="ReturnDate" class="form-control" value="@DateTime.Now" />
             <br />
-            <button class="btn btn-warning">Lend the Book</button>
+            <button class="btn btn-warning">Kitabı Ödünç Ver</button>
         </form>
     </div>
     </div>
