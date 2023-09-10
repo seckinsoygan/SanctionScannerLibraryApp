@@ -6,15 +6,15 @@
 
 <form method="post">
     <label>Kitap Adı</label>
-    <input type="text" asp-for="BookName" class="form-control" />
+    <input type="text" asp-for="BookName" class="form-control" placeholder="Kitap Adını Giriniz..." />
     <span asp-validation-for="BookName" class="text-danger"></span>
     <br />
     <label>Yazar</label>
-    <input type="text" asp-for="BookAuthor" class="form-control" />
+    <input type="text" asp-for="BookAuthor" class="form-control" placeholder="Yazar Adını Giriniz..." />
     <span asp-validation-for="BookAuthor" class="text-danger"></span>
     <br />
     <label>Fotoğraf</label>
-    <input type="text" asp-for="BookImage" class="form-control" />
+    <input type="text" asp-for="BookImage" class="form-control" placeholder="Kitap Fotoğraf URL adresini giriniz..." />
     <span asp-validation-for="BookImage" class="text-danger"></span>
     <br />
     <button class="btn btn-primary">Ekle</button>
