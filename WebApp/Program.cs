@@ -8,7 +8,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using WebApp.Mapping;
 using WebApp.Models.ViewModels;
-using WebApp.ValidationRules.BookLendValidationRules;
+using WebApp.ValidationRules.BookValidationRules;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using WebApp.Models.ViewModels;
 
-namespace WebApp.ValidationRules.BookLendValidationRules
+namespace WebApp.ValidationRules.BookValidationRules
 {
     public class LendBookValidator : AbstractValidator<LendBookViewModel>
     {

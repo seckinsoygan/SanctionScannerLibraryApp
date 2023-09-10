@@ -1,7 +1,7 @@
 ﻿using Entities;
 using FluentValidation;
 
-namespace WebApp.ValidationRules.BookLendValidationRules
+namespace WebApp.ValidationRules.BookValidationRules
 {
     public class AddBookValidator : AbstractValidator<Book>
     {

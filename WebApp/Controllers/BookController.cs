@@ -3,6 +3,7 @@ using Business.Abstract;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models.ViewModels;
+using WebApp.ValidationRules.BookValidationRules;
 
 namespace WebApp.Controllers
 {
@@ -33,7 +34,10 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult AddBook(Book book)
         {
-            if (ModelState.IsValid)
+            var validator = new AddBookValidator();
+            var result = validator.Validate(book);
+
+            if (result.IsValid)
             {
                 book.ReturnDate = DateTime.Now;
                 book.BookStatus = false;
@@ -56,7 +60,10 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult LendBook(LendBookViewModel model)
         {
-            if (ModelState.IsValid)
+            var validator = new LendBookValidator();
+            var validateResult = validator.Validate(model);
+
+            if (validateResult.IsValid)
             {
                 model.BookStatus = true;
                 var result = mapper.Map<Book>(model);
