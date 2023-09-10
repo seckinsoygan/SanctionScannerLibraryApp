@@ -2,6 +2,7 @@
 
 namespace DataAccess.Abstract
 {
+    //SOLID prensiplerine ve bağımlılığı azaltmak için interfaceler üzerinden işlem yapmak daha sağlıklı olacaktır.
     public interface IBookDal
     {
         List<Book> GetBooks();

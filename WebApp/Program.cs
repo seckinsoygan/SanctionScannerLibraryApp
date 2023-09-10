@@ -3,12 +3,19 @@ using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using DataAccess.Shared;
+using Entities;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using WebApp.Mapping;
+using WebApp.Models.ViewModels;
+using WebApp.ValidationRules.BookLendValidationRules;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IValidator<LendBookViewModel>, LendBookValidator>();
+builder.Services.AddTransient<IValidator<Book>, AddBookValidator>();
+builder.Services.AddControllersWithViews().AddFluentValidation();
 builder.Services.AddDbContext<AppDbContext>();
 
 builder.Services.AddScoped<AppDbContext>();
@@ -16,10 +23,14 @@ builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddScoped<IBookService, BookManager>();
 builder.Services.AddScoped<IBookDal, EfBookDal>();
 
-builder.Services.AddScoped<IBookActionDal, EfBookActionDal>();
-builder.Services.AddScoped<IBookActionService, BookActionManager>();
-
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+
+builder.Services.AddLogging(x =>
+{
+    x.ClearProviders();
+    x.SetMinimumLevel(LogLevel.Debug);
+    x.AddDebug();
+});
 
 var app = builder.Build();
 

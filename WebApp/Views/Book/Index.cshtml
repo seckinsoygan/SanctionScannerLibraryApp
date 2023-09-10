@@ -1,6 +1,6 @@
 ﻿@model List<Book>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tüm Kitaplar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <a href="/Book/AddBook" class="btn btn-success">Yeni Kitap Ekle</a>
@@ -13,17 +13,18 @@
             <div class="card-body">
                 <h5 class="card-title">@item.BookName</h5>
                 <p class="card-text">@item.BookAuthor</p>
-                @if(item.BookStatus == false)
+                @if (item.BookStatus == false)
                 {
-                    <p><i>Kütüphanede Bulunuyor.</i></p> 
+                    <p><i>Kütüphanede Bulunuyor.</i></p>
                 }
                 else
                 {
                     <p><i><b>@item.BookOwner</b> isimli kişide , <b>@item.ReturnDate.ToShortDateString()</b> tarihinde geri gelecek.</i></p>
                 }
-                <a href="/Book/LendBook/@item.BookId" class="btn btn-info">Ödünç Ver</a>
-                <br>
-                <a href="/Book/HomeBook/@item.BookId" class="btn btn-warning">Kütüphanede Olarak İşaretle</a>
+                <div class="row">
+                    <div class="col-sm-6"><a href="/Book/LendBook/@item.BookId" class="btn btn-info">Ödünç Ver</a></div>
+                    <div class="col-sm-6"><a href="/Book/HomeBook/@item.BookId" class="btn btn-warning">Kütüphanede Olarak İşaretle</a></div>
+                </div>
             </div>
         </div>
     }

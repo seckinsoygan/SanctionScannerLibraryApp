@@ -6,26 +6,28 @@
 
 <div class="row">
     <div class="col-md-6">
-    <div class="image">
+        <div class="image">
             <img src="@Model.BookImage" style="height:700px" />
-    </div>
+        </div>
     </div>
     <div class="col-md-6">
-    <div class="form">
-        <form method="post">
-            <input type="hidden" asp-for="BookId" />
-            <input type="hidden" asp-for="BookImage" />
-            <input type="hidden" asp-for="BookAuthor" />
-            <input type="hidden" asp-for="BookName" />
-            <label>İsim Soyisim</label>
-            <input type="text" asp-for="BookOwner" class="form-control" value=" " />
-            <br />
-            <label>Geri Getirilecek Tarih</label>
-            <input type="date" asp-for="ReturnDate" class="form-control" value="@DateTime.Now" />
-            <br />
-            <button class="btn btn-warning">Kitabı Ödünç Ver</button>
-        </form>
-    </div>
+        <div class="form">
+            <form method="post">
+                <input type="hidden" asp-for="BookId" />
+                <input type="hidden" asp-for="BookImage" />
+                <input type="hidden" asp-for="BookAuthor" />
+                <input type="hidden" asp-for="BookName" />
+                <label>İsim Soyisim</label>
+                <input type="text" asp-for="BookOwner" class="form-control" value=" " />
+                <span asp-validation-for="BookOwner" class="text-danger"></span>
+                <br />
+                <label>Geri Getirilecek Tarih</label>
+                <input type="date" asp-for="ReturnDate" class="form-control" value="@DateTime.Now" />
+                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                <br />
+                <button class="btn btn-warning">Kitabı Ödünç Ver</button>
+            </form>
+        </div>
     </div>
 </div>
 

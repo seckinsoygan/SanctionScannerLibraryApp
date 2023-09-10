@@ -10,17 +10,18 @@ namespace WebApp.Controllers
     {
         private readonly IBookService bookService;
         private readonly IMapper mapper;
-        private readonly IBookActionService bookActionService;
+        private readonly ILogger<BookController> logger;
 
-        public BookController(IBookService bookService, IMapper mapper, IBookActionService bookActionService)
+        public BookController(IBookService bookService, IMapper mapper, ILogger<BookController> logger)
         {
             this.bookService = bookService;
             this.mapper = mapper;
-            this.bookActionService = bookActionService;
+            this.logger = logger;
         }
 
         public IActionResult Index()
         {
+            logger.LogInformation("Kütüphanedeki kitaplar listelendi.");
             var result = bookService.GetBooks();
             return View(result);
         }
@@ -32,11 +33,19 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult AddBook(Book book)
         {
-            book.ReturnDate = DateTime.Now;
-            book.BookStatus = false;
-            book.BookOwner = "Kütüphane";
-            bookService.AddBook(book);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                book.ReturnDate = DateTime.Now;
+                book.BookStatus = false;
+                book.BookOwner = "Kütüphane";
+                bookService.AddBook(book);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                logger.LogError("Boş veri girilemez.");
+                return View();
+            }
         }
         [HttpGet]
         public IActionResult LendBook(int id)
@@ -47,10 +56,18 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult LendBook(LendBookViewModel model)
         {
-            model.BookStatus = true;
-            var result = mapper.Map<Book>(model);
-            bookService.UpdateBookStatus(result);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                model.BookStatus = true;
+                var result = mapper.Map<Book>(model);
+                bookService.UpdateBookStatus(result);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                logger.LogError("Boş veri girilemez.");
+                return View(model);
+            }
         }
         public IActionResult HomeBook(int id)
         {

@@ -4,6 +4,7 @@ using Entities;
 
 namespace DataAccess.Concrete
 {
+    //EF kullanılarak db üzerinde yapılan işlemler.
     public class EfBookDal : IBookDal
     {
         private readonly AppDbContext context;
