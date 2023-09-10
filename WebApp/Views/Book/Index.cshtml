@@ -22,6 +22,8 @@
                     <p><i><b>@item.BookOwner</b> isimli kişide , <b>@item.ReturnDate.ToShortDateString()</b> tarihinde geri gelecek.</i></p>
                 }
                 <a href="/Book/LendBook/@item.BookId" class="btn btn-info">Ödünç Ver</a>
+                <br>
+                <a href="/Book/HomeBook/@item.BookId" class="btn btn-warning">Kütüphanede Olarak İşaretle</a>
             </div>
         </div>
     }

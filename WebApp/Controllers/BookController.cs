@@ -52,5 +52,12 @@ namespace WebApp.Controllers
             bookService.UpdateBookStatus(result);
             return RedirectToAction("Index");
         }
+        public IActionResult HomeBook(int id)
+        {
+            var value = bookService.GetById(id);
+            value.BookStatus = false;
+            bookService.UpdateBookStatus(value);
+            return RedirectToAction("Index");
+        }
     }
 }
